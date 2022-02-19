@@ -1,6 +1,6 @@
 package com.example.web.services.repository;
 
-import com.example.web.services.entity.PostEntity;
+import com.example.web.services.entity.UserEntity;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,36 +10,36 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class PostDAO {
+public class UserDAO {
     private EntityManager entityManager;
 
     @Autowired
-    public PostDAO(EntityManager theEntityManager){
+    public UserDAO(EntityManager theEntityManager){
         entityManager = theEntityManager;
     }
 
     public List findAll(){
         Session currentSession = entityManager.unwrap(Session.class);
-        Query theQuery = currentSession.createQuery("from PostEntity", PostEntity.class);
-        List posts = theQuery.getResultList();
-        return posts;
+        Query theQuery = currentSession.createQuery("from UserEntity", UserEntity.class);
+        List users = theQuery.getResultList();
+        return users;
     }
 
-    public void save(PostEntity thePost){
+    public void save(UserEntity theUser){
         Session currentSession = entityManager.unwrap(Session.class);
-        currentSession.saveOrUpdate(thePost);
+        currentSession.saveOrUpdate(theUser);
     }
 
-    public PostEntity findById(int theId){
+    public UserEntity findById(int theId){
         Session currentSession = entityManager.unwrap(Session.class);
-        PostEntity thePost = currentSession.get(PostEntity.class, theId);
-        return thePost;
+        UserEntity theUser = currentSession.get(UserEntity.class, theId);
+        return theUser;
     }
 
     public void deleteById(int theId){
         Session currentSession = entityManager.unwrap(Session.class);
-        Query theQuery = currentSession.createQuery("delete from PostEntity where id=:postId");
-        theQuery.setParameter("postId", theId);
+        Query theQuery = currentSession.createQuery("delete from UserEntity where id=:userId");
+        theQuery.setParameter("userId", theId);
         theQuery.executeUpdate();
     }
 }
