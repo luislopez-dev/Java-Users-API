@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 public class PostRestController {
@@ -38,7 +37,6 @@ public class PostRestController {
     }
 
     /* Create post */
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/")
     public PostEntity addPost(@RequestBody PostEntity thePost){
         thePost.setId(0);
